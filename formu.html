@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario con Resultados</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f3f3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            color: #555;
+        }
+
+        input, textarea, select, button {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #resultado {
+            margin-top: 30px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        #resultado h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .dato {
+            margin: 5px 0;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <form id="formulario">
+        <h2>Formulario de Contacto</h2>
+
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
+
+        <label for="correo">Correo Electrónico:</label>
+        <input type="email" id="correo" name="correo" required>
+
+        <label for="telefono">Teléfono:</label>
+        <input type="tel" id="telefono" name="telefono">
+
+        <label for="asunto">Asunto:</label>
+        <select id="asunto" name="asunto">
+            <option value="consulta">Consulta</option>
+            <option value="soporte">Soporte</option>
+            <option value="otros">Otros</option>
+        </select>
+
+        <label for="mensaje">Mensaje:</label>
+        <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+
+        <button type="submit">Enviar</button>
+    </form>
+
+    <div id="resultado" style="display: none;">
+        <h3>Datos enviados:</h3>
+        <div class="dato"><strong>Nombre:</strong> <span id="r-nombre"></span></div>
+        <div class="dato"><strong>Correo:</strong> <span id="r-correo"></span></div>
+        <div class="dato"><strong>Teléfono:</strong> <span id="r-telefono"></span></div>
+        <div class="dato"><strong>Asunto:</strong> <span id="r-asunto"></span></div>
+        <div class="dato"><strong>Mensaje:</strong> <span id="r-mensaje"></span></div>
+    </div>
+
+    <script>
+        document.getElementById("formulario").addEventListener("submit", function(e) {
+            e.preventDefault(); // Evita recargar la página
+
+            // Captura los datos
+            const nombre = document.getElementById("nombre").value;
+            const correo = document.getElementById("correo").value;
+            const telefono = document.getElementById("telefono").value;
+            const asunto = document.getElementById("asunto").value;
+            const mensaje = document.getElementById("mensaje").value;
+
+            // Muestra los resultados
+            document.getElementById("r-nombre").textContent = nombre;
+            document.getElementById("r-correo").textContent = correo;
+            document.getElementById("r-telefono").textContent = telefono;
+            document.getElementById("r-asunto").textContent = asunto;
+            document.getElementById("r-mensaje").textContent = mensaje;
+
+            // Muestra el bloque de resultados
+            document.getElementById("resultado").style.display = "block";
+
+            // Opcional: limpiar el formulario
+            this.reset();
+        });
+    </script>
+
+</body>
+</html>
